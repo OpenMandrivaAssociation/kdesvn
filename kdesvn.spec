@@ -2,7 +2,7 @@
 %define __libtoolize true
 
 Name: kdesvn
-Version: 0.11.1
+Version: 0.11.2
 Release:	%mkrel 1
 Summary:	kdesvn is yet another client for subversion
 License:	GPL
@@ -41,7 +41,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %_libdir/kde3/*
 %_menudir/kdesvn
 %_datadir/apps/*
-%_docdir/HTML/*/*
+%doc %_docdir/HTML/*/*
 %_iconsdir/*/*/*/*
 %_datadir/locale/*/*
 %_datadir/applications/*
