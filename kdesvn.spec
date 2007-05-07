@@ -2,7 +2,7 @@
 %define __libtoolize true
 
 Name: kdesvn
-Version: 0.11.2
+Version: 0.12.0
 Release:	%mkrel 1
 Summary:	kdesvn is yet another client for subversion
 License:	GPL
