@@ -1,22 +1,21 @@
-%define qtdir %_prefix/lib/qt3
-%define __libtoolize true
+%define qtdir %{_prefix}/lib/qt3
 
-Name: kdesvn
-Version: 0.12.0
-Release:	%mkrel 1
 Summary:	kdesvn is yet another client for subversion
+Name:		kdesvn
+Version:	0.12.1
+Release:	%mkrel 1
 License:	GPL
-Url: http://www.alwins-world.de/programs/kdesvn/
-Packager:       Mandriva Linux KDE Team <kde@mandriva.com>
-Group: Graphical desktop/KDE
+Group:		Graphical desktop/KDE
+Url:		http://www.alwins-world.de/programs/kdesvn/
 Source0:	http://www.alwins-world.de/programs/download/kdesvn/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires: graphviz
+Packager:	Mandriva Linux KDE Team <kde@mandriva.com>
+Requires:	graphviz
 BuildRequires:	cmake
 BuildRequires:	kdelibs-devel 
 BuildRequires:	subversion-devel >= 1.2
-BuildRequires: neon-devel
-BuildRequires: apr-devel
+BuildRequires:	neon-devel
+BuildRequires:	apr-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 kdesvn is yet another client for subversion. But it uses native 
@@ -56,8 +55,8 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %define invalid_lib %mklibname svnqt 1
 
 %package -n %lib_svn_qt
-Summary: KDE Svn core library
-Group: Graphical desktop/KDE
+Summary:	KDE Svn core library
+Group:		Graphical desktop/KDE
 Obsoletes: %invalid_lib 
 
 %post -n %lib_svn_qt -p /sbin/ldconfig
@@ -73,9 +72,9 @@ KDE Svn core library
 #-----------------------------------------------------------------
 
 %package devel
-Summary: kdesvn devel package
-Group: Development/KDE and Qt
-Requires: %lib_svn_qt = %version-%release
+Summary:	kdesvn devel package
+Group:		Development/KDE and Qt
+Requires:	%lib_svn_qt = %version-%release
 
 %description devel
 kdesvn devel package
@@ -93,28 +92,19 @@ kdesvn devel package
 
 %build
 export QTDIR=%qtdir
-export KDEDIR=%_prefix
+export KDEDIR=%{_prefix}
 cmake \
 %if "%{_lib}" != "lib"
 -DLIB_SUFFIX=64 \
 %endif
--DCMAKE_INSTALL_PREFIX=%_prefix .
+-DCMAKE_INSTALL_PREFIX=%{_prefix} .
 
 %make
 
 %install
-rm -rf %buildroot
+rm -rf %{buildroot}
 
-make DESTDIR=%buildroot install
-
-# Create LMDK menu entries
-install -d %buildroot/%_menudir/
-
-kdedesktop2mdkmenu.pl %name "More Applications/Development/Development Environments" %buildroot/%_datadir/applications/kde/kdesvn.desktop %buildroot/%_menudir/%name
+%makeinstall_std
 
 %clean
-rm -rf %buildroot
-
-
-
-
+rm -rf %{buildroot}
