@@ -8,7 +8,6 @@ License:	GPL
 Group:		Graphical desktop/KDE
 Url:		http://www.alwins-world.de/programs/kdesvn/
 Source0:	http://www.alwins-world.de/programs/download/kdesvn/%{name}-%{version}.tar.bz2
-Packager:	Mandriva Linux KDE Team <kde@mandriva.com>
 Requires:	graphviz
 BuildRequires:	cmake
 BuildRequires:	kdelibs-devel 
