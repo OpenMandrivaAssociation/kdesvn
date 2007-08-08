@@ -1,9 +1,7 @@
-%define qtdir %{_prefix}/lib/qt3
-
 Summary:	kdesvn is yet another client for subversion
 Name:		kdesvn
-Version:	0.12.1
-Release:	%mkrel 2
+Version:	0.13.0
+Release:	%mkrel 1
 License:	GPL
 Group:		Graphical desktop/KDE
 Url:		http://www.alwins-world.de/programs/kdesvn/
@@ -45,8 +43,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %_datadir/applications/*
 %_datadir/config.kcfg/*
 %_datadir/services/*
-%_datadir/man/man1/kdesvn.1.bz2
-%_datadir/man/man1/kdesvnaskpass.1.bz2
+%_datadir/man/man1/*
 
 #-----------------------------------------------------------------
 
@@ -90,20 +87,18 @@ kdesvn devel package
 %setup -q
 
 %build
-export QTDIR=%qtdir
+export QTDIR=%qt3dir
 export KDEDIR=%{_prefix}
-cmake \
-%if "%{_lib}" != "lib"
--DLIB_SUFFIX=64 \
-%endif
--DCMAKE_INSTALL_PREFIX=%{_prefix} .
+%cmake
 
 %make
 
 %install
 rm -rf %{buildroot}
 
+cd build
 %makeinstall_std
+cd -
 
 %clean
 rm -rf %{buildroot}
