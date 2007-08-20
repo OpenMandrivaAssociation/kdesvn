@@ -43,7 +43,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %_datadir/applications/*
 %_datadir/config.kcfg/*
 %_datadir/services/*
-%_datadir/man/man1/*
+%_mandir/man1/*
 
 #-----------------------------------------------------------------
 
