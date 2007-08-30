@@ -1,17 +1,18 @@
 Summary:	kdesvn is yet another client for subversion
 Name:		kdesvn
 Version:	0.13.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		Graphical desktop/KDE
-Url:		http://www.alwins-world.de/programs/kdesvn/
-Source0:	http://www.alwins-world.de/programs/download/kdesvn/%{name}-%{version}.tar.bz2
+Url:		http://kdesvn.alwins-world.de/
+Source0:	http://www.alwins-world.de/programs/download/kdesvn/0.13.x/%{name}-%{version}.tar.bz2
 Requires:	graphviz
 BuildRequires:	cmake
 BuildRequires:	kdelibs-devel 
 BuildRequires:	subversion-devel >= 1.2
 BuildRequires:	neon-devel
 BuildRequires:	apr-devel
+BuildRequires:	desktop-file-utils
 Requires:       iceauth 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -40,20 +41,20 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %doc %_docdir/HTML/*/*
 %_iconsdir/*/*/*/*
 %_datadir/locale/*/*
-%_datadir/applications/*
+%_datadir/applications/kde/kdesvn.desktop
 %_datadir/config.kcfg/*
 %_datadir/services/*
 %_mandir/man1/*
 
 #-----------------------------------------------------------------
 
-%define lib_svn_qt %mklibname svnqt 2
-%define invalid_lib %mklibname svnqt 1
+%define lib_svn_qt %mklibname svnqt 3
 
 %package -n %lib_svn_qt
 Summary:	KDE Svn core library
 Group:		Graphical desktop/KDE
-Obsoletes: %invalid_lib 
+Obsoletes: %mklibname svnqt 1
+Obsoletes: %mklibname svnqt 2
 
 %post -n %lib_svn_qt -p /sbin/ldconfig
 %postun -n %lib_svn_qt -p /sbin/ldconfig
@@ -99,6 +100,11 @@ rm -rf %{buildroot}
 cd build
 %makeinstall_std
 cd -
+
+desktop-file-install --vendor='' \
+	--dir=%buildroot%_datadir/applications/kde/ \
+	--add-category='RevisionControl' \
+	%buildroot%_datadir/applications/kde/kdesvn.desktop
 
 %clean
 rm -rf %{buildroot}
