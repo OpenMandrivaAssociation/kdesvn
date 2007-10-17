@@ -39,6 +39,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %_libdir/kde3/*
 %_datadir/apps/kdesvn
 %_datadir/apps/kdesvnpart
+%_datadir/apps/kconf_update/*
 %_datadir/apps/konqueror/servicemenus/kdesvn_subversion.desktop
 %_iconsdir/hicolor/*/*/*
 %_datadir/applications/kde/kdesvn.desktop
@@ -67,7 +68,7 @@ KDE Svn core library
 
 %files -n %lib_svn_qt
 %defattr(-,root,root,-)
-%_libdir/*.so.%{lib_svn_qt_major}
+%_libdir/*.so.%{lib_svn_qt_major}*
 
 #-----------------------------------------------------------------
 
