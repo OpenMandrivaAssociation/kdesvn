@@ -32,23 +32,24 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %postun
 %clean_menus
 
-%files
+%files -f %name.lang
 %defattr(-,root,root,-)
 %doc README AUTHORS COPYING ChangeLog
 %_bindir/*
 %_libdir/kde3/*
-%_datadir/apps/*
-%doc %_docdir/HTML/*/*
-%_iconsdir/*/*/*/*
-%_datadir/locale/*/*
+%_datadir/apps/kdesvn
+%_datadir/apps/kdesvnpart
+%_datadir/apps/konqueror/servicemenus/kdesvn_subversion.desktop
+%_iconsdir/hicolor/*/*/*
 %_datadir/applications/kde/kdesvn.desktop
 %_datadir/config.kcfg/*
-%_datadir/services/*
+%_datadir/services/*.protocol
+%_datadir/services/kded/kdesvnd.desktop
 %_mandir/man1/*
 
 #-----------------------------------------------------------------
 
-%define lib_svn_qt_major 3
+%define lib_svn_qt_major 4
 %define lib_svn_qt %mklibname svnqt %lib_svn_qt_major
 
 %package -n %lib_svn_qt
@@ -56,6 +57,7 @@ Summary:	KDE Svn core library
 Group:		Graphical desktop/KDE
 Obsoletes: %mklibname svnqt 1
 Obsoletes: %mklibname svnqt 2
+Obsoletes: %mklibname svnqt 3
 
 %post -n %lib_svn_qt -p /sbin/ldconfig
 %postun -n %lib_svn_qt -p /sbin/ldconfig
@@ -81,7 +83,6 @@ kdesvn devel package
 %defattr(-,root,root,-)
 %_includedir/*
 %_libdir/*.so
-%_libdir/*.la
 
 #-----------------------------------------------------------------
 
@@ -104,6 +105,8 @@ desktop-file-install --vendor='' \
 	--dir=%buildroot%_datadir/applications/kde/ \
 	--add-category='RevisionControl' \
 	%buildroot%_datadir/applications/kde/kdesvn.desktop
+
+%find_lang %{name} --with-html
 
 %clean
 rm -rf %{buildroot}
