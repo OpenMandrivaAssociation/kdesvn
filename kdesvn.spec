@@ -1,7 +1,7 @@
 Summary:	kdesvn is yet another client for subversion
 Name:		kdesvn
 Version:	0.14.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
@@ -91,7 +91,6 @@ kdesvn devel package
 
 %build
 %cmake
-
 %make
 
 %install
