@@ -14,6 +14,7 @@ BuildRequires:	neon-devel
 BuildRequires:	apr-devel
 BuildRequires:	desktop-file-utils
 Requires:       iceauth 
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 kdesvn is yet another client for subversion. But it uses native 
