@@ -1,4 +1,4 @@
-Summary:	kdesvn is yet another client for subversion
+Summary:	KDE client for subversion
 Name:		kdesvn
 Version:	0.14.1
 Release:	%mkrel 2
@@ -73,7 +73,7 @@ KDE Svn core library
 #-----------------------------------------------------------------
 
 %package devel
-Summary:	kdesvn devel package
+Summary:	Kdesvn devel package
 Group:		Development/KDE and Qt
 Requires:	%lib_svn_qt = %version-%release
 
