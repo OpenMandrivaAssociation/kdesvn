@@ -1,7 +1,7 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
 Version:	0.14.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
@@ -54,8 +54,8 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %define lib_svn_qt %mklibname svnqt %lib_svn_qt_major
 
 %package -n %lib_svn_qt
-Summary:	KDE Svn core library
-Group:		Graphical desktop/KDE
+Summary:   KDE Svn core library
+Group:     System/Libraries
 Obsoletes: %mklibname svnqt 1
 Obsoletes: %mklibname svnqt 2
 Obsoletes: %mklibname svnqt 3
