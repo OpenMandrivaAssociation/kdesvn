@@ -60,8 +60,12 @@ Obsoletes: %mklibname svnqt 1
 Obsoletes: %mklibname svnqt 2
 Obsoletes: %mklibname svnqt 3
 
+%if %mdkversion < 200900
 %post -n %lib_svn_qt -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %lib_svn_qt -p /sbin/ldconfig
+%endif
 
 %description -n %lib_svn_qt
 KDE Svn core library
