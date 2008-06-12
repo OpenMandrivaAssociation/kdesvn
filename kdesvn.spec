@@ -26,11 +26,15 @@ integrated into it via KPart.
 The base C++ interface to subversion I took from the (real great) tool 
 Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 
+%if %mdkversion < 200900
 %post
 %update_menus
+%endif
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
+%endif
 
 %files -f %name.lang
 %defattr(-,root,root,-)
