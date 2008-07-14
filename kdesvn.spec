@@ -39,18 +39,18 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %files -f %name.lang
 %defattr(-,root,root,-)
 %doc README AUTHORS COPYING ChangeLog
-%_bindir/*
-%_libdir/kde3/*
-%_datadir/apps/kdesvn
-%_datadir/apps/kdesvnpart
-%_datadir/apps/kconf_update/*
-%_datadir/apps/konqueror/servicemenus/kdesvn_subversion.desktop
-%_iconsdir/hicolor/*/*/*
-%_datadir/applications/kde/kdesvn.desktop
-%_datadir/config.kcfg/*
-%_datadir/services/*.protocol
-%_datadir/services/kded/kdesvnd.desktop
-%_mandir/man1/*
+%_kde3_bindir/*
+%_kde3_libdir/kde3/*
+%_kde3_datadir/apps/kdesvn
+%_kde3_datadir/apps/kdesvnpart
+%_kde3_datadir/apps/kconf_update/*
+%_kde3_datadir/apps/konqueror/servicemenus/kdesvn_subversion.desktop
+%_kde3_iconsdir/hicolor/*/*/*
+%_kde3_datadir/applications/kde/kdesvn.desktop
+%_kde3_datadir/config.kcfg/*
+%_kde3_datadir/services/*.protocol
+%_kde3_datadir/services/kded/kdesvnd.desktop
+%_kde3_mandir/man1/*
 
 #-----------------------------------------------------------------
 
@@ -76,7 +76,7 @@ KDE Svn core library
 
 %files -n %lib_svn_qt
 %defattr(-,root,root,-)
-%_libdir/*.so.%{lib_svn_qt_major}*
+%_kde3_libdir/*.so.%{lib_svn_qt_major}*
 
 #-----------------------------------------------------------------
 
@@ -90,8 +90,8 @@ kdesvn devel package
 
 %files devel 
 %defattr(-,root,root,-)
-%_includedir/*
-%_libdir/*.so
+%_kde3_includedir/*
+%_kde3_libdir/*.so
 
 #-----------------------------------------------------------------
 
@@ -99,20 +99,19 @@ kdesvn devel package
 %setup -q
 
 %build
-%cmake
+%cmake -DCMAKE_INSTALL_PREFIX:PATH=%{_kde3_prefix}
 %make
 
 %install
 rm -rf %{buildroot}
-
 cd build
 %makeinstall_std
 cd -
 
 desktop-file-install --vendor='' \
-	--dir=%buildroot%_datadir/applications/kde/ \
+	--dir=%buildroot%_kde3_datadir/applications/kde/ \
 	--add-category='RevisionControl' \
-	%buildroot%_datadir/applications/kde/kdesvn.desktop
+	%buildroot%_kde3_datadir/applications/kde/kdesvn.desktop
 
 %find_lang %{name} --with-html
 
