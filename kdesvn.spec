@@ -1,14 +1,15 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
-Version:	1.0.0
-Release:	%mkrel 2
+Version:	1.0.1
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
 Source:		http://kdesvn.alwins-world.de/trac.fcgi/downloads/%name-%version.tar.bz2
 Requires:	graphviz
 BuildRequires:	cmake
-BuildRequires:	kdelibs-devel 
+BuildRequires:	kdelibs-devel
+BuildRequires:	sqlite3-devel
 BuildRequires:	subversion-devel >= 1.5
 BuildRequires:	neon-devel
 BuildRequires:	apr-devel
