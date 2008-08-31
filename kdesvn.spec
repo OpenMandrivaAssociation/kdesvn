@@ -1,7 +1,7 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
 Version:	1.0.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
@@ -54,7 +54,8 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %_kde3_datadir/services/kded/kdesvnd.desktop
 %_kde3_mandir/man1/*
 # Provided by kdesdk
-%exclude %_kde3_datadir/services/svn+file.protocol
+%exclude %_kde3_datadir/services/svn.protocol
+%exclude %_kde3_datadir/services/svn+*.protocol
 
 #-----------------------------------------------------------------
 
