@@ -1,21 +1,16 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
-Version:	1.0.2
-Release:	%mkrel 2
+Version:	1.2.1
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
 Source:		http://kdesvn.alwins-world.de/trac.fcgi/downloads/%name-%version.tar.bz2
+Patch0:		kdesvn-1.2.1-fix-link.patch
 Requires:	graphviz
-BuildRequires:	cmake
-BuildRequires:	kdelibs-devel
-BuildRequires:	sqlite3-devel
+BuildRequires:	kdelibs4-devel
 BuildRequires:	subversion-devel >= 1.5
-BuildRequires:	neon-devel
-BuildRequires:	apr-devel
-BuildRequires:	desktop-file-utils
-Requires: iceauth
-Conflicts: kdesdk < 1:3.5.10-2
+Requires:	cervisia >= 1:4.0
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -41,23 +36,24 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %files -f %name.lang
 %defattr(-,root,root,-)
 %doc README AUTHORS COPYING ChangeLog
-%_kde3_bindir/*
-%_kde3_libdir/kde3/*
-%_kde3_datadir/apps/kdesvn
-%_kde3_datadir/apps/kdesvnpart
-%_kde3_datadir/apps/kconf_update/*
-%_kde3_datadir/apps/konqueror/servicemenus/kdesvn_subversion.desktop
-%_kde3_iconsdir/hicolor/*/*/*
-%_kde3_datadir/applications/kde/kdesvn.desktop
-%_kde3_datadir/config.kcfg/*
-%_kde3_datadir/services/*.protocol
-%_kde3_datadir/services/kded/kdesvnd.desktop
+%_kde_bindir/*
+%_kde_libdir/kde4/*
+%_kde_datadir/apps/kdesvn
+%_kde_datadir/apps/kdesvnpart
+%_kde_datadir/apps/kconf_update/*
+%_kde_iconsdir/hicolor/*/*/*
+%_kde_datadir/applications/kde4/kdesvn.desktop
+%_kde_datadir/config.kcfg/*
+%_kde_services/ServiceMenus/kdesvn_subversion.desktop
+%_kde_services/kded/kdesvnd.desktop
+%_kde_services/kdesvnpart.desktop
+%_kde_services/ksvn*.protocol
 %_mandir/man1/*
 
 #-----------------------------------------------------------------
 
-%define lib_svn_qt_major 4
-%define lib_svn_qt %mklibname svnqt %lib_svn_qt_major
+%define lib_svn_qt_major 5
+%define lib_svn_qt %mklibname svnqt_ %lib_svn_qt_major
 
 %package -n %lib_svn_qt
 Summary:   KDE Svn core library
@@ -78,7 +74,7 @@ KDE Svn core library
 
 %files -n %lib_svn_qt
 %defattr(-,root,root,-)
-%_kde3_libdir/*.so.%{lib_svn_qt_major}*
+%_kde_libdir/*.so.%{lib_svn_qt_major}*
 
 #-----------------------------------------------------------------
 
@@ -92,33 +88,28 @@ kdesvn devel package
 
 %files devel 
 %defattr(-,root,root,-)
-%_kde3_includedir/*
-%_kde3_libdir/*.so
+%_kde_includedir/*
+%_kde_libdir/*.so
+%_datadir/dbus-1/interfaces/org.kde.kdesvnd.xml
 
 #-----------------------------------------------------------------
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX:PATH=%{_kde3_prefix}
+%cmake_kde4
 %make
 
 %install
 rm -rf %{buildroot}
-cd build
-%makeinstall_std
-cd -
-
-desktop-file-install --vendor='' \
-	--dir=%buildroot%_kde3_datadir/applications/kde/ \
-	--add-category='RevisionControl' \
-	%buildroot%_kde3_datadir/applications/kde/kdesvn.desktop
-
-mkdir -p %buildroot%_datadir
-mv %buildroot%_kde3_mandir %buildroot%_mandir
+%makeinstall_std -C build
 
 %find_lang %{name} --with-html
+
+# fwang: conflicts with cervisia
+rm -f %buildroot%_kde_services/svn*.protocol
 
 %clean
 rm -rf %{buildroot}
