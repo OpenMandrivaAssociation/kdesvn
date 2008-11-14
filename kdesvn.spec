@@ -1,12 +1,11 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
-Version:	1.2.1
+Version:	1.2.2
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
 Source:		http://kdesvn.alwins-world.de/trac.fcgi/downloads/%name-%version.tar.bz2
-Patch0:		kdesvn-1.2.1-fix-link.patch
 Requires:	graphviz
 BuildRequires:	kdelibs4-devel
 BuildRequires:	subversion-devel >= 1.5
@@ -53,7 +52,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 #-----------------------------------------------------------------
 
 %define lib_svn_qt_major 5
-%define lib_svn_qt %mklibname svnqt_ %lib_svn_qt_major
+%define lib_svn_qt %mklibname svnqt4_ %lib_svn_qt_major
 
 %package -n %lib_svn_qt
 Summary:   KDE Svn core library
@@ -61,6 +60,7 @@ Group:     System/Libraries
 Obsoletes: %mklibname svnqt 1
 Obsoletes: %mklibname svnqt 2
 Obsoletes: %mklibname svnqt 3
+Obsoletes: %{mklibname svnqt_ 5} < %version
 
 %if %mdkversion < 200900
 %post -n %lib_svn_qt -p /sbin/ldconfig
@@ -96,7 +96,6 @@ kdesvn devel package
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 %cmake_kde4
