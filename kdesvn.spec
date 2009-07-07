@@ -1,6 +1,6 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
-Version:	1.3.1
+Version:	1.3.2
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
