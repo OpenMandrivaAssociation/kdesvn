@@ -1,6 +1,6 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
-Version:	1.3.2
+Version:	1.4.0
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
@@ -52,7 +52,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 
 #-----------------------------------------------------------------
 
-%define lib_svn_qt_major 5
+%define lib_svn_qt_major 6
 %define lib_svn_qt %mklibname svnqt4_ %lib_svn_qt_major
 
 %package -n %lib_svn_qt
