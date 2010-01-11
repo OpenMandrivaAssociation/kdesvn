@@ -37,6 +37,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %doc AUTHORS COPYING ChangeLog
 %_kde_bindir/*
 %_kde_libdir/kde4/*
+%_kde_datadir/svnqt
 %_kde_datadir/apps/kdesvn
 %_kde_datadir/apps/kdesvnpart
 %_kde_datadir/apps/kconf_update/*
