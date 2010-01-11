@@ -34,7 +34,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 
 %files -f %name.lang
 %defattr(-,root,root,-)
-%doc README AUTHORS COPYING ChangeLog
+%doc AUTHORS COPYING ChangeLog
 %_kde_bindir/*
 %_kde_libdir/kde4/*
 %_kde_datadir/apps/kdesvn
