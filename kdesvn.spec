@@ -41,7 +41,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 
 #-----------------------------------------------------------------
 
-%define lib_svn_qt_major 6
+%define lib_svn_qt_major 7
 %define lib_svn_qt %mklibname svnqt4_ %{lib_svn_qt_major}
 
 %package -n %{lib_svn_qt}
