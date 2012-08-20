@@ -1,18 +1,15 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
-Version:	1.5.5
-Release:	%mkrel 5
+Version:	1.6.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
 Source:		http://kdesvn.alwins-world.de/downloads/%{name}-%{version}.tar.bz2
-Patch0:		kdesvn-1.5.4-doc-ver.patch
-Patch1:		russian-translation.patch
-Patch2:		kdesvn-1.5.5-qt4.8-fix.patch
 Requires:	graphviz
 BuildRequires:	kdelibs4-devel
-BuildRequires:	subversion-devel >= 1.5
-Requires:	cervisia >= 1:4.0
+BuildRequires:	subversion-devel
+Requires:	cervisia
 
 %description
 kdesvn is yet another client for subversion. But it uses native 
@@ -29,11 +26,11 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %{_kde_bindir}/*
 %{_kde_libdir}/kde4/*
 %{_kde_datadir}/svnqt
-%{_kde_datadir}/apps/kdesvn
-%{_kde_datadir}/apps/kdesvnpart
-%{_kde_datadir}/apps/kconf_update/*
+%{_kde_appsdir}/kdesvn
+%{_kde_appsdir}/kdesvnpart
+%{_kde_appsdir}/kconf_update/*
 %{_kde_iconsdir}/hicolor/*/*/*
-%{_kde_datadir}/applications/kde4/kdesvn.desktop
+%{_kde_applicationsdir}/kdesvn.desktop
 %{_kde_datadir}/config.kcfg/*
 %{_kde_services}/ServiceMenus/kdesvn_subversion.desktop
 %{_kde_services}/ServiceMenus/kdesvn_subversion_toplevel.desktop
@@ -50,10 +47,6 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %package -n %{lib_svn_qt}
 Summary:	KDE Svn core library
 Group:		System/Libraries
-Obsoletes:	%mklibname svnqt 1
-Obsoletes:	%mklibname svnqt 2
-Obsoletes:	%mklibname svnqt 3
-Obsoletes:	%{mklibname svnqt_ 5} < %{version}
 
 %description -n %{lib_svn_qt}
 KDE Svn core library
@@ -80,16 +73,12 @@ kdesvn devel package
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p1
-%patch2 -p1
 
 %build
 %cmake_kde4
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 %find_lang %{name} --with-html
@@ -97,5 +86,3 @@ rm -rf %{buildroot}
 # fwang: conflicts with cervisia
 rm -f %{buildroot}%{_kde_services}/svn*.protocol
 
-%clean
-rm -rf %{buildroot}
