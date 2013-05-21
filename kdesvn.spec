@@ -5,11 +5,11 @@ Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
-Source:		http://kdesvn.alwins-world.de/downloads/%{name}-%{version}.tar.bz2
-Requires:	graphviz
+Source0:	http://kdesvn.alwins-world.de/downloads/%{name}-%{version}.tar.bz2
 BuildRequires:	kdelibs4-devel
 BuildRequires:	subversion-devel
 Requires:	cervisia
+Requires:	graphviz
 
 %description
 kdesvn is yet another client for subversion. But it uses native 
@@ -86,27 +86,3 @@ kdesvn devel package
 # fwang: conflicts with cervisia
 rm -f %{buildroot}%{_kde_services}/svn*.protocol
 
-%changelog
-* Sun May 06 2012 Andrey Bondrov <abondrov@mandriva.org> 1.5.5-5mdv2012.0
-+ Revision: 796915
-- Add patch 2 to fix build against Qt4 4.8
-
-  + vsinitsyn <vsinitsyn>
-    - Updated Russian translation
-
-* Wed May 04 2011 Oden Eriksson <oeriksson@mandriva.com> 1.5.5-3
-+ Revision: 666020
-- mass rebuild
-
-* Thu Dec 02 2010 Paulo Andrade <pcpa@mandriva.com.br> 1.5.5-2mdv2011.0
-+ Revision: 605046
-- Rebuild with apr with workaround to issue with gcc type based alias analysis
-
-* Wed Oct 13 2010 Sandro Cazzaniga <kharec@mandriva.org> 1.5.5-1mdv2011.0
-+ Revision: 585418
-- update to 1.5.5
-
-* Sat Sep 11 2010 Funda Wang <fwang@mandriva.org> 1.5.4-1mdv2011.0
-+ Revision: 577578
-- fix build with kde 4.5
-- new version 1.5.4
