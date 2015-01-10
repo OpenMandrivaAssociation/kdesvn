@@ -8,6 +8,8 @@ Url:		http://kdesvn.alwins-world.de/
 Source0:	http://kdesvn.alwins-world.de/downloads/%{name}-%{version}.tar.bz2
 BuildRequires:	kdelibs4-devel
 BuildRequires:	subversion-devel
+BuildRequires:	db-devel
+BuildRequires:	openldap-devel
 Requires:	cervisia
 Requires:	graphviz
 
