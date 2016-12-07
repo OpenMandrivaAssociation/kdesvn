@@ -1,15 +1,36 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
-Version:	1.6.0
-Release:	9
+Version:	2.0.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
-Source0:	http://kdesvn.alwins-world.de/downloads/%{name}-%{version}.tar.bz2
-BuildRequires:	kdelibs4-devel
+Source0:	http://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
 BuildRequires:	subversion-devel
 BuildRequires:	db-devel
 BuildRequires:	openldap-devel
+BuildRequires:	cmake(KF5Bookmarks)
+BuildRequires:	cmake(KF5Config)
+BuildRequires:	cmake(KF5ConfigWidgets)
+BuildRequires:	cmake(KF5CoreAddons)
+BuildRequires:	cmake(KF5DBusAddons)
+BuildRequires:	cmake(KF5DocTools)
+BuildRequires:	cmake(KF5I18n)
+BuildRequires:	cmake(KF5IconThemes)
+BuildRequires:	cmake(KF5ItemViews)
+BuildRequires:	cmake(KF5JobWidgets)
+BuildRequires:	cmake(KF5KIO)
+BuildRequires:	cmake(KF5Notifications)
+BuildRequires:	cmake(KF5Parts)
+BuildRequires:	cmake(KF5Service)
+BuildRequires:	cmake(KF5TextEditor)
+BuildRequires:	cmake(KF5Wallet)
+BuildRequires:	cmake(KF5WidgetsAddons)
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5DBus)
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Sql)
+BuildRequires:	pkgconfig(Qt5Widgets)
 Requires:	cervisia
 Requires:	graphviz
 
@@ -25,66 +46,28 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 
 %files -f %{name}.lang
 %doc AUTHORS COPYING ChangeLog
-%{_kde_bindir}/*
-%{_kde_libdir}/kde4/*
-%{_kde_datadir}/svnqt
-%{_kde_appsdir}/kdesvn
-%{_kde_appsdir}/kdesvnpart
-%{_kde_appsdir}/kconf_update/*
-%{_kde_iconsdir}/hicolor/*/*/*
-%{_kde_applicationsdir}/kdesvn.desktop
-%{_kde_datadir}/config.kcfg/*
-%{_kde_services}/ServiceMenus/kdesvn_subversion.desktop
-%{_kde_services}/ServiceMenus/kdesvn_subversion_toplevel.desktop
-%{_kde_services}/kded/kdesvnd.desktop
-%{_kde_services}/kdesvnpart.desktop
-%{_kde_services}/ksvn*.protocol
-%{_mandir}/man1/*
-
-#-----------------------------------------------------------------
-
-%define lib_svn_qt_major 7
-%define lib_svn_qt %mklibname svnqt4_ %{lib_svn_qt_major}
-
-%package -n %{lib_svn_qt}
-Summary:	KDE Svn core library
-Group:		System/Libraries
-
-%description -n %{lib_svn_qt}
-KDE Svn core library
-
-%files -n %{lib_svn_qt}
-%{_kde_libdir}/*.so.%{lib_svn_qt_major}*
-
-#-----------------------------------------------------------------
-
-%package devel
-Summary:	Kdesvn devel package
-Group:		Development/KDE and Qt
-Requires:	%{lib_svn_qt} = %{version}-%{release}
-
-%description devel
-kdesvn devel package
-
-%files devel
-%{_kde_includedir}/*
-%{_kde_libdir}/*.so
-%{_datadir}/dbus-1/interfaces/org.kde.kdesvnd.xml
-
-#-----------------------------------------------------------------
+%{_bindir}/*
+%{_libdir}/qt5/plugins/*
+%{_iconsdir}/hicolor/*/*/*
+%{_datadir}/applications/org.kde.kdesvn.desktop
+%{_datadir}/config.kcfg/*.kcfg
+%{_datadir}/kservices5/*.protocol
+%{_datadir}/kservices5/*.desktop
+%{_datadir}/kservices5/ServiceMenus/*.desktop
+%{_datadir}/kxmlgui5/kdesvn
+%{_datadir}/dbus-1/*/*
+%{_datadir}/kconf_update/*
+%{_datadir}/kdesvn
 
 %prep
 %setup -q
 
 %build
-%cmake_kde4
-%make
+%cmake_kde5
+%ninja
 
 %install
-%makeinstall_std -C build
+%ninja_install -C build
 
 %find_lang %{name} --with-html
-
-# fwang: conflicts with cervisia
-rm -f %{buildroot}%{_kde_services}/svn*.protocol
 
