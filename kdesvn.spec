@@ -1,7 +1,7 @@
 Summary:	KDE client for subversion
 Name:		kdesvn
 Version:	2.0.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
