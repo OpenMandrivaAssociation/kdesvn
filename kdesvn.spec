@@ -6,6 +6,7 @@ License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
 Source0:	http://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
+BuildRequires:	pkgconfig(uuid)
 BuildRequires:	subversion-devel
 BuildRequires:	db-devel
 BuildRequires:	openldap-devel
