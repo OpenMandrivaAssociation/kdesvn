@@ -1,0 +1,11 @@
+diff -up kdesvn-2.0.0/src/svnfrontend/blamedisplay.cpp.omv~ kdesvn-2.0.0/src/svnfrontend/blamedisplay.cpp
+--- kdesvn-2.0.0/src/svnfrontend/blamedisplay.cpp.omv~	2019-06-28 01:46:02.345619938 +0200
++++ kdesvn-2.0.0/src/svnfrontend/blamedisplay.cpp	2019-06-28 01:46:11.596619489 +0200
+@@ -30,6 +30,7 @@
+ #include <KTextEdit>
+ #include <KTreeWidgetSearchLine>
+ 
++#include <QAction>
+ #include <QBrush>
+ #include <QFontDatabase>
+ #include <QInputDialog>

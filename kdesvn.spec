@@ -6,6 +6,7 @@ License:	GPLv2+
 Group:		Graphical desktop/KDE
 Url:		http://kdesvn.alwins-world.de/
 Source0:	http://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
+Patch0:		kdesvn-2.0.0-qt-5.13.patch
 BuildRequires:	pkgconfig(uuid)
 BuildRequires:	subversion-devel
 BuildRequires:	db-devel
@@ -62,7 +63,7 @@ Rapidsvn (see http://rapidsvn.tigris.org/) with some modifcations and fixes.
 %{_datadir}/kdesvn
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %cmake_kde5
