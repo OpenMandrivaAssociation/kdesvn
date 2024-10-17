@@ -4,7 +4,7 @@ Version:	2.0.0
 Release:	6
 License:	GPLv2+
 Group:		Graphical desktop/KDE
-Url:		http://kdesvn.alwins-world.de/
+Url:		https://kdesvn.alwins-world.de/
 Source0:	http://download.kde.org/stable/%{name}/%{version}/%{name}-%{version}.tar.xz
 Patch0:		kdesvn-2.0.0-qt-5.13.patch
 BuildRequires:	pkgconfig(uuid)
